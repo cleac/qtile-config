@@ -80,6 +80,18 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
+
+    # Sleep button
+    Key([], "XF86Sleep", lazy.spawn("slock systemctl hybrid-sleep")),
+
+    # Lock button    
+    Key([], "XF86ScreenSaver", lazy.spawn("slock")),
+
+    # Brightness control
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
+
+    Key([mod], "F11", lazy.window.toggle_fullscreen()), 
 ]
 
 groups = [Group(i) for i in "asdfuiop"]
@@ -101,19 +113,19 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Arial',
+    font='Product Sans',
     fontsize=16,
     padding=3,
 )
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.TextBox("default config", name="default"),
+                widget.TextBox("hasper config", name="cleac"),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
